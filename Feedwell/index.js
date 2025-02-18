@@ -11,13 +11,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 const db = new pg.Client({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'FeedwellDB',
-    port: 5432,
-    password:  '123456',
+    connectionString: process.env.DATABASE_URL || "postgresql://feedwelldb_user:SaoBDKSrh9xlbXoFhpmJSleSnUx7keXE@dpg-cuqd00qj1k6c73dvu04g-a/feedwelldb",
+    ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false, // Required for cloud DBs
 });
-db.connect();
+
+db.connect()
+    .then(() => console.log("Connected to database"))
+    .catch(err => console.error("Database connection error:", err));
 
 app.get('/', (req, res) => {
     res.render("index.ejs");
