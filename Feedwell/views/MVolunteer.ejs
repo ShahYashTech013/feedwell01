@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedwell Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 15px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        table {
+        width: 80%;
+        margin: 30px auto;
+        border-collapse: collapse;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        background-color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    th, td {
+        padding: 15px 20px;
+        border: 1px solid #ddd;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    th {
+        background-color: #343a40;
+        color: #ffffff;
+        text-transform: uppercase;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f3f3f3;
+    }
+
+    tr:hover {
+        background-color: #d4edda;
+        cursor: pointer;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        table {
+            width: 100%;
+            font-size: 16px;
+        }
+
+        th, td {
+            padding: 10px 12px;
+        }
+    }
+
+    </style>
+</head>
+<body>
+    <header>Feedwell Admin Panel</header>
+
+    <!-- 📌 Navigation Menu -->
+    <nav>
+        <a href="/admindash">Overview</a>
+        <a href="/mdonor">Donor Dashboard</a>
+        <a href="/mrecip">Recipient Dashboard</a>
+        <a href="#">Supplier Dashboard</a>
+    </nav>
+    <div>
+        <table>
+            <tr>
+                <th>Volunteer Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+            </tr>
+            <% for(var i=0; i < fname.length ; i++) { %>
+            <tr>
+                <td><%= fname[i]+" "+lname[i] %></td>
+                <td><%= email[i] %></td>
+                <td><%= phone[i] %></td>
+                <td><%= address[i] %></td>
+            </tr>
+            <% } %>
+        </table>
+  </div>
+</body>
+</html>

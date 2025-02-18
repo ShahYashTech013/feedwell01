@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Dashboard</title>
+    <link rel="stylesheet" href="styles.css"> <!-- External CSS file -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: pink;
+        }
+        .navbar {
+            width: 100%;
+            background: #343a40;
+            padding: 15px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar img {
+            height: 90px; /* Adjusted logo size */
+            width: 90px;  /* Adjusted logo size */
+        }
+        .navbar a {
+            color: rgb(230, 19, 19);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 25px;
+        }
+        .navbar a:hover {
+            color: #28a745;
+        }
+        .navbar .profile-icon {
+            background: white;
+            color: #343a40;
+            border-radius: 50%;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: rgb(163, 225, 4);
+            padding: 30px;
+            border-radius: 100px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            margin-top: 80px;
+        }
+        h2 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #1008ea;
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 500px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            font-size: 20px;
+        }
+        button:hover {
+            background: #eef0ef;
+        }
+        /* Table styling */
+    table {
+        width: 80%;
+        margin: 30px auto;
+        border-collapse: collapse;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        background-color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    th, td {
+        padding: 15px 20px;
+        border: 1px solid #ddd;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    th {
+        background-color: #343a40;
+        color: #ffffff;
+        text-transform: uppercase;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f3f3f3;
+    }
+
+    tr:hover {
+        background-color: #d4edda;
+        cursor: pointer;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        table {
+            width: 100%;
+            font-size: 16px;
+        }
+
+        th, td {
+            padding: 10px 12px;
+        }
+    }
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="assets/images/logo.png" alt="Logo"> <!-- Ensure this path is correct -->
+        <div>
+            <a href="/index.js">Home</a>
+            <a href="/about_us">About Us</a>
+            <a href="/track.ejs">Track Food</a>
+            <a href="/donations">Your Donation</a>
+        </div>
+        <div class="profile-icon">G</div> <!-- Profile icon with alphabet -->
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th>Donation Date</th>
+                <th>Donation Time</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th>Occasion</th>
+                <th>Food Name</th>
+                <th>Address</th>
+            </tr>
+            <% for(var i=0; i < foodname.length ; i++) { %>
+            <tr>
+                <td><%= servicedate[i].toISOString().split('T')[0] %></td>
+                <td><%= servicetime[i].toTimeString().split(' ')[0] %></td>
+                <td><%= foodcategory[i] %></td>
+                <td><%= quantity[i] %></td>
+                <td><%= occasion[i] %></td>
+                <td><%= foodname[i] %></td>
+                <td><%= location[i] %></td>
+            </tr>
+            <% } %>
+        </table>
+    </div>
+</body>
+</html>

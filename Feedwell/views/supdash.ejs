@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplier Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: orange;
+        }
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #0f7ef5;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .status-accepted {
+            color: green;
+            font-weight: bold;
+        }
+        .status-rejected {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>Supplier Dashboard</h2>
+            <div>
+                <span id="profileName"></span>
+                <div class="profile-icon" id="profileIcon">S</div>
+            </div>
+        </div>
+
+        <ul class="nav nav-tabs" id="dashboardTabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#donorRequests">Food Donor / Pickup Requests</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#recipientRequests">Recipient Requested Food</a>
+            </li>
+        </ul>
+
+        <div class="tab-content mt-3">
+            <div class="tab-pane fade show active" id="donorRequests">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Donor Name</th>
+                            <th>Food Name</th>
+                            <th>Category</th>
+                            <th>Quantity</th>
+                            <th>Location</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="donorTableBody">
+                        <% for(var i=0 ; i < dname.length ; i++ ) { %>
+                        <tr>
+                            <td><%= dname[i] %></td>
+                            <td><%= foodname[i] %></td>
+                            <td><%= category[i] %></td>
+                            <td><%= quantity[i] %></td>
+                            <td><%= location[i] %></td>
+                            <td class="status">Pending</td>
+                            <td>
+                                <button class="btn btn-success btn-sm" onclick="acceptRequest(this)">Accept</button>
+                                <button class="btn btn-danger btn-sm" onclick="rejectRequest(this)">Reject</button>
+                            </td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tab-pane fade" id="recipientRequests">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Recipient Name</th>
+                            <th>Food Name</th>
+                            <th>Category</th>
+                            <th>Quantity</th>
+                            <th>Location</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                        
+                    </thead>
+                    <tbody id="recipientTableBody">
+                        <% for(var i=0 ; i < rdname.length ; i++ ) { %>
+                            <tr>
+                                <td><%= rdname[i] %></td>
+                                <td><%= rfoodname[i] %></td>
+                                <td><%= rcategory[i] %></td>
+                                <td><%= rquantity[i] %></td>
+                                <td><%= rlocation[i] %></td>
+                                <td class="status">Pending</td>
+                                <td>
+                                    <button class="btn btn-success btn-sm" onclick="acceptRequest(this)">Accept</button>
+                                    <button class="btn btn-danger btn-sm" onclick="rejectRequest(this)">Reject</button>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let userName = localStorage.getItem("supplierName") || "Supplier";
+            document.getElementById("profileIcon").textContent = userName.charAt(0).toUpperCase();
+            document.getElementById("profileName").textContent = userName;
+        });
+
+        function acceptRequest(button) {
+            let row = button.closest("tr");
+            let statusCell = row.querySelector(".status");
+            statusCell.textContent = "Accepted";
+            statusCell.classList.add("status-accepted");
+        }
+
+        function rejectRequest(button) {
+            let row = button.closest("tr");
+            let statusCell = row.querySelector(".status");
+            statusCell.textContent = "Rejected - Try Next Day";
+            statusCell.classList.add("status-rejected");
+        }
+    </script>
+</body>
+</html>

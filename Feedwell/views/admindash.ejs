@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedwell Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 15px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .dashboard-card {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex: 1 1 calc(30% - 20px);
+            min-width: 250px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .flagged-user {
+            background-color: #ffe6e6;
+            padding: 10px;
+            border: 1px solid red;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .section {
+            width: 100%;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>Feedwell Admin Panel</header>
+
+    <!-- 📌 Navigation Menu -->
+    <nav>
+        <a href="#overview">Overview</a>
+        <a href="/mdonor">Donor Dashboard</a>
+        <a href="/mrecip">Recipient Dashboard</a>
+        <a href="/mvolun">Supplier Dashboard</a>
+    </nav>
+
+    <!-- 📊 Overview Section -->
+    <div id="overview" class="container">
+        <div class="dashboard-card">
+            <h2>Total Donations</h2>
+            <p><%= dcount %></p>
+        </div>
+
+        <div class="dashboard-card">
+            <h2>Total Recipients</h2>
+            <p><%= rcount %></p>
+        </div>
+    </div>
+
+    <!-- 🎯 Donor Dashboard -->
+    <div id="donor-dashboard" class="section">
+        <h2>Donor Dashboard</h2>
+        <p>View all donor's, including their details.</p>
+        <button><a href="/mdonor" style="color: white; text-decoration: none;">View Donors</a></button>
+    </div>
+
+    <!-- 🎯 Recipient Dashboard -->
+    <div id="recipient-dashboard" class="section">
+        <h2>Recipient Dashboard</h2>
+        <p>View all the recipient, including their details.</p>
+        <button><a href="/mrecip" style="color: white; text-decoration: none;">View Recipients</a></button>
+    </div>
+
+    <!-- 🎯 Supplier Dashboard -->
+    <div id="supplier-dashboard" class="section">
+        <h2>Supplier Dashboard</h2>
+        <p>View the supplier details , includiing their details</p>
+        <button><a href="/mvolun" style="color: white; text-decoration: none;">View Suppliers</a></button>
+    </div>
+</body>
+</html>

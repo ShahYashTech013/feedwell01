@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #ffcc00, #ff9900);
+            color: #333;
+        }
+
+        .login-container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            width: 350px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #ff9900;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ff9900;
+            border-radius: 10px;
+            font-size: 16px;
+            color: #333;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #ffcc00;
+            box-shadow: 0 0 10px #ffcc00;
+        }
+
+        button {
+            background: #ff9900;
+            color: #fff;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background: #e68a00;
+        }
+
+        .toggle-link {
+            color: #ff9900;
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+        .toggle-link:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="login-form" action="/ldonor" method="POST">
+            <input type="number" id="mobileno" name="mobileno" placeholder="Mobile Number" required>
+            <input type="password" id="login-password" name="login-password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+
+        <% if(locals.warn) { %>
+            <p class="error-message"><%= warn %></p>
+        <% } %>
+
+        <p>Not Logged In? <a href="/donorreg" class="toggle-link">Register here</a></p>
+    </div>
+</body>
+</html>

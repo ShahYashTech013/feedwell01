@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FeedWell - Surplus into Lifeline</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            text-align: center;
+            overflow-x: hidden;
+            animation: fadeInBody 1.5s ease-in-out;
+        }
+
+        header {
+            background-color: #28a745;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        section {
+            margin-top: 60px;
+            padding: 20px;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        .container {
+            margin-top: 20px;
+            width: 100%;
+            margin: auto;
+            padding: 0%;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .col-md-4 {
+            width: 18%;
+            /* Adjusted width to fit 5 cards in one row */
+            margin: 10px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card img {
+            width: 100%;
+            height: 250px;
+            /* Fixed height for equal image size */
+            object-fit: cover;
+            /* Ensures images don't stretch */
+        }
+
+        .card-body {
+            padding: 10px;
+        }
+
+        @keyframes fadeInCard {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .navbar {
+            width: 100%;
+            background: linear-gradient(45deg, #ffcc00, #ff9900);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+        .navbar a {
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+            font-weight: bold;
+            margin-right: 20px;
+            transition: 0.3s ease;
+        }
+        .navbar a:hover {
+            color: #fff;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="/">
+        <img src="assets/images/logo.png" alt="Logo" width="60px" height="55px" padding=none>
+        </a>
+        <div class="logo"><h4><b>Feedwell</b></h4></div>
+        <div class="nav-links">
+            <a href="/join-team">Join Our Team</a>
+            <a href="/about_us ">About us</a>
+            
+        </div>
+    </div>
+    <section>
+        <h2>What We Do?</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="assets/images/image1.jpg" alt="Food Collection">
+                        <div class="card-body">
+                            <h5>Food Collection Process</h5>
+                            <p>We collect surplus and safe food for redistribution.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="assets/images/image3.jpg" alt="Food Sources">
+                        <div class="card-body">
+                            <h5>Food Sources</h5>
+                            <p>We receive food from hotels, wedding events, homes, and catering services.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="assets/images/image2.jpg" alt="Food Distribution">
+                        <div class="card-body">
+                            <h5>Food Distribution</h5>
+                            <p>We deliver food to the needy, orphanages, and old age homes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <h2>Our Team</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Founder</h3>
+                            <h4><b>Mr. Omkar Prabhu</b></h4>
+                            <p>Dedicated to food security and social welfare.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Co-Founder</h3>
+                            <h4><b>Mr. Vinayak Potdar</b></h4>
+                            <p>Experienced in Digital Technology Head.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Co-Founder</h3>
+                            <h4><b>Mr. Ganesh Potdar</b></h4>
+                            <p>Committed to running food donation campaigns.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Co-Founder</h3>
+                            <h4><b>Mr. Gomatesh Ghali</b></h4>
+                            <p>Handles Software Technology.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Co-Founder</h3>
+                            <h4><b>Mr. Yash Shah</b></h4>
+                            <p>Handles Website Design.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Contact Us: contact@feedwell.org | +91 XXXXX XXXXX</p>
+    </footer>
+</body>
+</html>

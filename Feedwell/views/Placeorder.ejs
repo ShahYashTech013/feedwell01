@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Place Your Order</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Navigation Bar */
+        nav {
+            width: 100%;
+            background-color: #007bff;
+            padding: 15px;
+            position: fixed;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Form Styling */
+        .form-container {
+            padding: 20px;
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 100px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Ordered List Section */
+        .orders-container {
+            padding: 20px;
+            width: 100%;
+            max-width: 600px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .order-item {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .delete-button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .delete-button:hover {
+            background-color: darkred;
+        }
+    </style>
+    <script>
+        let orders = [];
+
+        function submitForm(event) {
+            event.preventDefault();
+
+            // Capture form data
+            const foodCategory = document.getElementById('food-category').value;
+            const foodName = document.getElementById('food_name').value;
+            const quantity = document.getElementById('quantity').value;
+            const deliveryDate = document.getElementById('delivery-date').value;
+            const address = document.getElementById('address').value;
+            const paymentMethod = document.getElementById('payment-method').value;
+
+            // Create order object
+            const order = {
+                foodCategory,
+                foodName,
+                quantity,
+                deliveryDate,
+                address,
+                paymentMethod,
+                id: Date.now(), // Unique ID for deletion
+            };
+
+            // Add order to the list
+            orders.push(order);
+            displayOrders();
+            alert("Order placed successfully!");
+        }
+
+        function displayOrders() {
+            const ordersContainer = document.getElementById('orders-list');
+            ordersContainer.innerHTML = ''; // Clear existing orders
+
+            orders.forEach(order => {
+                const orderItem = document.createElement('div');
+                orderItem.className = 'order-item';
+                orderItem.innerHTML = `
+                    <p><strong>Food Category:</strong> ${order.foodCategory}</p>
+                    <p><strong>Food Name:</strong> ${order.foodName}</p>
+                    <p><strong>Quantity:</strong> ${order.quantity}</p>
+                    <p><strong>Delivery Date:</strong> ${order.deliveryDate}</p>
+                    <p><strong>Address:</strong> ${order.address}</p>
+                    <p><strong>Payment Method:</strong> ${order.paymentMethod}</p>
+                    <button class="delete-button" onclick="deleteOrder(${order.id})">Delete</button>
+                `;
+                ordersContainer.appendChild(orderItem);
+            });
+        }
+
+        function deleteOrder(orderId) {
+            orders = orders.filter(order => order.id !== orderId);
+            displayOrders();
+        }
+    </script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#available-food">Available Food</a>
+        <a href="#your-orders">Your Ordered Food</a>
+    </nav>
+
+    <!-- Order Form Section -->
+    <div id="available-food" class="form-container">
+        <h1>Place Your Order</h1>
+        <form id="order-form" onsubmit="submitForm(event)">
+            <label for="food-category">Food Category:</label>
+            <select id="food-category" name="food-category" required>
+                <option value="Breakfast">Breakfast</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Dinner">Dinner</option>
+                <option value="Mini Dinner">Mini Dinner</option>
+            </select>
+
+            <label for="food_name">Food Name:</label>
+            <input type="text" id="food_name" name="food_name" required>
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" required>
+
+            <label for="delivery-date">Preferred Delivery Date:</label>
+            <input type="date" id="delivery-date" name="delivery-date" required>
+
+            <label for="address">Current Address:</label>
+            <textarea id="address" name="address" rows="3" placeholder="Enter your address here" required></textarea>
+
+            <label for="payment-method">Payment Method:</label>
+            <select id="payment-method" name="payment-method" required>
+                <option value="UPI">UPI</option>
+                <option value="Bank Card">Bank Card</option>
+                <option value="Cash on Delivery">Cash on Delivery</option>
+            </select>
+
+            <button type="submit">Submit Order</button>
+        </form>
+    </div>
+
+    
+</body>
+</html>

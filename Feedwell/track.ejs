@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Tracking</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: orange;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .navbar {
+            background: #2C3E50;
+            padding: 15px;
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .date-input-container {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .date-input {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            outline: none;
+        }
+        button {
+            padding: 10px 20px;
+            background: #3498DB;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+        button:hover {
+            background: #2980B9;
+        }
+        .tracking-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            margin-top: 20px;
+        }
+        .step {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-left: 4px solid #ddd;
+            position: relative;
+        }
+        .step::before {
+            content: '';
+            width: 14px;
+            height: 14px;
+            background: #ddd;
+            border-radius: 50%;
+            position: absolute;
+            left: -10px;
+        }
+        .step.completed {
+            border-left: 4px solid #2ECC71;
+        }
+        .step.completed::before {
+            background: #2ECC71;
+        }
+        .step strong {
+            font-size: 18px;
+            margin-left: 10px;
+        }
+        .step small {
+            display: block;
+            font-size: 14px;
+            color: #777;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/index.ejs">Home</a>
+        <a href="/Aboutus.ejs">About Us</a>
+        <a href="/supdash.ejs">Supplier</a>
+    </div>
+    <div class="container">
+        <div class="date-input-container">
+            <input type="date" id="orderDate" class="date-input">
+            <button onclick="setOrderDate()">Set Date</button>
+        </div>
+        <div class="tracking-container">
+            <div class="step" id="step1">
+                <strong>Order Placed</strong>
+                <small id="orderPlacedDate">Select a date</small>
+            </div>
+            <div class="step" id="step2">
+                <strong>Shipped</strong>
+                <small id="shippedDate">Pending...</small>
+            </div>
+            <div class="step" id="step3">
+                <strong>Out for Delivery</strong>
+                <small id="deliveryDate">Pending...</small>
+            </div>
+            <div class="step" id="step4">
+                <strong>Delivered</strong>
+                <small id="deliveredDate">Pending...</small>
+            </div>
+        </div>
+    </div>
+    <script>
+        function setOrderDate() {
+            const orderDate = document.getElementById('orderDate').value;
+            if (orderDate) {
+                document.getElementById('orderPlacedDate').textContent = orderDate;
+                document.getElementById('shippedDate').textContent = new Date(new Date(orderDate).getTime() + (2 * 24 * 60 * 60 * 1000)).toISOString().split('T')[0];
+                document.getElementById('deliveryDate').textContent = new Date(new Date(orderDate).getTime() + (5 * 24 * 60 * 60 * 1000)).toISOString().split('T')[0];
+                document.getElementById('deliveredDate').textContent = new Date(new Date(orderDate).getTime() + (7 * 24 * 60 * 60 * 1000)).toISOString().split('T')[0];
+                document.querySelectorAll('.step').forEach((step, index) => {
+                    if (index === 0 || orderDate) step.classList.add('completed');
+                });
+            }
+        }
+    </script>
+</body>
+</html>
